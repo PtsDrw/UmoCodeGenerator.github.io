@@ -38,12 +38,13 @@ body {
 }
 a {
     text-decoration: none;
+    margin-top: 30px;
 }
 .subscribe {
     display: flex;
     align-items: center;
     justify-content: center;
-    margin: 30px auto auto auto;
+    margin: auto;
     padding: 10px 20px 10px 20px;
     border-radius: 20px;
     width: 50%;
