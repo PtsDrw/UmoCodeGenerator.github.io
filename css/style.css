@@ -147,7 +147,7 @@ select::-ms-expand {
     border-radius: 100px;
     background: #9e58e3;
     height: 20px;
-    width: 100px;
+    width: 0px;
     transition: 0.8s;
 }
 
