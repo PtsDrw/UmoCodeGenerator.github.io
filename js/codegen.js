@@ -1,3 +1,37 @@
+const gamePromoConfigs = {
+    MyCloneArmy: {
+        appToken: '74ee0b5b-775e-4bee-974f-63e7f4d5bacb',
+        promoId: 'fe693b26-b342-4159-8808-15e3ff7f8767',
+        eventsDelay: 120000
+    },
+    ChainCube2048: {
+        appToken: 'd1690a07-3780-4068-810f-9b5bbf2931b2',
+        promoId: 'b4170868-cef0-424f-8eb9-be0622e8e8e3',
+        eventsDelay: 20000
+    },
+    TrainMiner: {
+        appToken: '82647f43-3f87-402d-88dd-09a90025313f',
+        promoId: 'c4480ac7-e178-4973-8061-9ed5b2e17954',
+        eventsDelay: 120000
+    },
+    BikeRide3D: {
+        appToken: 'd28721be-fd2d-4b45-869e-9f253b554e50',
+        promoId: '43e35910-c168-4634-ad4f-52fd764a843f',
+        eventsDelay: 20000
+    },
+    MergeAway: {
+        appToken: '8d1cc2ad-e097-4b86-90ef-7a27e19fb833',
+        promoId: 'dc128d28-c45b-411c-98ff-ac7726fbaea4',
+        eventsDelay: 20000
+    },
+    TwerkRace: {
+        appToken: '61308365-9d16-4040-8bb0-2f4a4c69074c',
+        promoId: '61308365-9d16-4040-8bb0-2f4a4c69074c',
+        eventsDelay: 20000
+    },
+};
+
+
 document.getElementById('startBtn').addEventListener('click',
     async () => {
         const startBtn = document.getElementById('startBtn');
@@ -8,33 +42,11 @@ document.getElementById('startBtn').addEventListener('click',
         const generatedKeys = document.getElementById('generatedKeys');
         const keyCount = parseInt(document.getElementById('keyCountSelect').value);
         const gameId = parseInt(document.getElementById('gameSelect').value);
-        if (gameId === 6) {
-            APP_TOKEN = '61308365-9d16-4040-8bb0-2f4a4c69074c';
-            PROMO_ID = '61308365-9d16-4040-8bb0-2f4a4c69074c';
-            EVENTS_DELAY = 120000;
-        } else if (gameId === 5) {
-            APP_TOKEN = '8d1cc2ad-e097-4b86-90ef-7a27e19fb833';
-            PROMO_ID = 'dc128d28-c45b-411c-98ff-ac7726fbaea4';
-            EVENTS_DELAY = 120000;
-        } else if (gameId === 4) {
-            APP_TOKEN = '82647f43-3f87-402d-88dd-09a90025313f';
-            PROMO_ID = 'c4480ac7-e178-4973-8061-9ed5b2e17954';
-            EVENTS_DELAY = 120000;
-        } else if (gameId === 3) {
-            APP_TOKEN = '74ee0b5b-775e-4bee-974f-63e7f4d5bacb';
-            PROMO_ID = 'fe693b26-b342-4159-8808-15e3ff7f8767';
-            EVENTS_DELAY = 120000;
-        } else if (gameId === 2) {
-            APP_TOKEN = 'd1690a07-3780-4068-810f-9b5bbf2931b2';
-            PROMO_ID = 'b4170868-cef0-424f-8eb9-be0622e8e8e3';
-            EVENTS_DELAY = 20000;
-        } else {
-            if (gameId === 1) {
-                APP_TOKEN = 'd28721be-fd2d-4b45-869e-9f253b554e50';
-                PROMO_ID = '43e35910-c168-4634-ad4f-52fd764a843f';
-                EVENTS_DELAY = 20000;
-            }
-        }
+        const gameSelect = document.getElementById('gameSelect');
+        const selectedGame = gameSelect.value;
+
+        currentAppConfig = gamePromoConfigs[selectedGame];
+
         // Reset UI for new generation
         progressBar.style.width = '0%';
         progressText.innerText = 'генерация... ожидайте';
@@ -62,10 +74,10 @@ document.getElementById('startBtn').addEventListener('click',
                 return;
             }
 
-            for (let i = 0; i < 7; i++) {
-                await sleep(EVENTS_DELAY * delayRandom());
+            for (let i = 0; i < 10; i++) {
+                await sleep(currentAppConfig.eventsDelay * delayRandom());
                 const hasCode = await emulateProgress(clientToken);
-                updateProgress(15 / keyCount); // Update progress incrementally
+                updateProgress(10 / keyCount); // Update progress incrementally
                 if (hasCode) {
                     break;
                 }
@@ -73,7 +85,7 @@ document.getElementById('startBtn').addEventListener('click',
 
             try {
                 const key = await generateKey(clientToken);
-                updateProgress(60); // Finalize progress
+                progressBar.style.width = `${progress}%`;
                 progressText.innerText = 'Готово!';
                 return key;
             } catch (error) {
@@ -90,10 +102,6 @@ document.getElementById('startBtn').addEventListener('click',
         startBtn.disabled = false;
     });
 
-document.getElementById('creatorChannelBtn').addEventListener('click', () => {
-    window.location.href = 'https://dzen.ru/id/6692df520f4cdd6ded47c3ee'; // Замените на URL вашего канала
-});
-
 function generateClientId() {
     const timestamp = Date.now();
     const randomNumbers = Array.from({ length: 19 }, () => Math.floor(Math.random() * 10)).join('');
@@ -104,7 +112,7 @@ async function login(clientId) {
     const response = await fetch('https://api.gamepromo.io/promo/login-client', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ appToken: APP_TOKEN, clientId, clientOrigin: 'deviceid' })
+        body: JSON.stringify({ appToken:  currentAppConfig.appToken, clientId, clientOrigin: 'deviceid' })
     });
     const data = await response.json();
     if (!response.ok) {
@@ -121,7 +129,7 @@ async function emulateProgress(clientToken) {
             'Authorization': `Bearer ${clientToken}`
         },
         body: JSON.stringify({
-            promoId: PROMO_ID,
+            promoId: currentAppConfig.promoId,
             eventId: crypto.randomUUID(),
             eventOrigin: 'undefined'
         })
@@ -140,7 +148,7 @@ async function generateKey(clientToken) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${clientToken}`
         },
-        body: JSON.stringify({ promoId: PROMO_ID })
+        body: JSON.stringify({ promoId:  currentAppConfig.promoId })
     });
     const data = await response.json();
     if (!response.ok) {
