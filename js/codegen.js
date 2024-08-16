@@ -8,7 +8,11 @@ document.getElementById('startBtn').addEventListener('click',
         const generatedKeys = document.getElementById('generatedKeys');
         const keyCount = parseInt(document.getElementById('keyCountSelect').value);
         const gameId = parseInt(document.getElementById('gameSelect').value);
-        if (gameId === 5) {
+        if (gameId === 6) {
+            APP_TOKEN = '61308365-9d16-4040-8bb0-2f4a4c69074c';
+            PROMO_ID = '61308365-9d16-4040-8bb0-2f4a4c69074c';
+            EVENTS_DELAY = 120000;
+        } else if (gameId === 5) {
             APP_TOKEN = '8d1cc2ad-e097-4b86-90ef-7a27e19fb833';
             PROMO_ID = 'dc128d28-c45b-411c-98ff-ac7726fbaea4';
             EVENTS_DELAY = 120000;
