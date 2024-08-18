@@ -22,9 +22,9 @@
 <div class="container">
     <div class="generate-container">
         <div class="select-box">
-            <div class="title">Выберите игру:</div>
+            <label for="gameSelect" class="title">Выберите игру:</label>
             <div class="select mt5">
-                <select name="format" id="gameSelect">
+                <label for="gameSelect"></label><select name="format" id="gameSelect">
                     <option selected value="BikeRide3D">Riding Extreme 3D</option>
                     <option value="ChainCube2048">Chain Cube</option>
                     <option value="MyCloneArmy">My clone army</option>
@@ -34,10 +34,10 @@
                 </select>
             </div>
         </div>
-        <div class="select-box">
-            <div class="title">Выберите количество кодов:</div>
+        <div class="select-box mt5">
+            <label class="title">Выберите количество кодов:</label>
             <div class="select mt5">
-                <select name="format" id="keyCountSelect">
+                <label for="keyCountSelect"></label><select name="format" id="keyCountSelect">
                     <option selected value="1">1 Код</option>
                     <option value="2">2 Кода</option>
                     <option value="3">3 Кода</option>
@@ -45,18 +45,26 @@
                 </select>
             </div>
         </div>
-        <button class="button" id="startBtn">ГЕНЕРИРОВАТЬ</button>
+        <div id="genbtn"><button class="button" id="startBtn">ГЕНЕРИРОВАТЬ</button></div>
+<div id="statusGen" class="hidden">
+    <div class="statusGenText mt5 title">Процесс генерации:</div>
+    <span id="statusGenText" class="pouring title">катаемся на велосипедах</span>
+</div>
+
         <div class="progress mt5 hidden" id="progressContainer">
             <div class="progress-value" id="progressBar"></div>
-            <span id="progressText">прогресс генерации</span>
+            <div class="" id="progressText"></div>
         </div>
-        <div id="keyContainer" class="hidden">
-            <p id="generatedKeys">
-                BIKE-1E6-Z8CQ-0N9W-N0Q<br>
-                BIKE-0EJ-S3RG-0NBC-TDR<br>
-                BIKE-3EE-Y5R5-0HBM-G1G<br>
-                BIKE-2E2-XYCF-0K8M-7BH</p>
+        <div class="keyblock mt30">
+            <div id="keyContainer" class="mt5 hidden">
+                <p id="generatedKeys">
+                    BIKE-1E6-Z8CQ-0N9W-N0Q<br>
+                    BIKE-0EJ-S3RG-0NBC-TDR<br>
+                    BIKE-3EE-Y5R5-0HBM-G1G<br>
+                    BIKE-2E2-XYCF-0K8M-7BH</p>
+            </div>
         </div>
+
         <div class="sunbscribe-box mt30">
             <a class="mt5" href="https://t.me/umoteam">
                 <div class="subscribe mt5"><span>Подписаться</span>
