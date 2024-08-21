@@ -164,7 +164,25 @@ async function login(clientId) {
 }
 
 function generateUUID() {
-    statusText.innerText = 'выполняем конкурсы тамады';
+    	let random = Math.floor(Math.random() * 2000);
+	if (random < 250) {
+		statusText.innerText = 'выполняем конкурсы тамады';
+	} else if (random < 500) {
+		statusText.innerText = 'любуемся рекламой ВТБ';
+	} else if (random < 750) {
+		statusText.innerText = 'загадываем желание золотой рыбке';
+	} else if (random < 1000) {
+		statusText.innerText = 'материм разработчиков';
+	} else if (random < 1250) {
+		statusText.innerText = 'мечтаем о листинге';
+	} else if (random < 1500) {
+		statusText.innerText = 'радуемся что Вы на нас подписаны';
+	} else if (random < 1750) {
+		statusText.innerText = 'Просим дьявола, чтобы подготовил котел разработчикам';
+	} else if (random < 2000) {
+		statusText.innerText = 'Торгуем носками на рынке, т.к. с хомяка не заработать';
+	}
+    
     if (typeof crypto.randomUUID === 'function') {
         try {
             return crypto.randomUUID();
