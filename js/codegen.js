@@ -40,7 +40,7 @@ const gamePromoConfigs = {
         appToken: '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71',
         promoId: '2aaf5aee-2cbc-47ec-8a3f-0962cc14bc71',
         eventsDelay: 20000,
-        attemptsNumber: 20
+        attemptsNumber: 22
     },
     MowandTrim: {
         appToken: 'ef319a80-949a-492e-8ee0-424fb5fc20a6',
