@@ -1,4 +1,3 @@
-const defaultLanguage = document.documentElement.getAttribute('lang')
 const gamePromoConfigs = {
     MyCloneArmy: {
         appToken: '74ee0b5b-775e-4bee-974f-63e7f4d5bacb',
