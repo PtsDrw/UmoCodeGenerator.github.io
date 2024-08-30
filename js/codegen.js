@@ -59,6 +59,18 @@ const gamePromoConfigs = {
         promoId: 'bc0971b8-04df-4e72-8a3e-ec4dc663cd11',
         eventsDelay: 20000,
         attemptsNumber: 20
+    },
+    Zoopolis: {
+        appToken: 'b2436c89-e0aa-4aed-8046-9b0515e1c46b',
+        promoId: 'b2436c89-e0aa-4aed-8046-9b0515e1c46b',
+        eventsDelay: 20000,
+        attemptsNumber: 20
+    },
+    GangsWars: {
+        appToken: 'b6de60a0-e030-48bb-a551-548372493523',
+        promoId: 'c7821fa7-6632-482c-9635-2bd5798585f9',
+        eventsDelay: 30000,
+        attemptsNumber: 20
     }
 };
 
@@ -149,7 +161,40 @@ document.getElementById('startBtn').addEventListener('click', async () => {
     progressBar.style.width = '100%';
     progressText.innerText = '100%';
     statusText.innerText = 'Забираем коды';
-    generatedKeys.innerText = keys.filter(key => key).join('\n');
+    if (keys.length > 1) {
+        const keyItemsPromises = keys.filter(key => key).map(async (key, index) => {
+            return `
+                <div class="code">
+                        <span>${key}</span>
+                        <button class="copyKeyBtn" ><i class="fa-regular fa-copy" data-key="${key}"></i></button>
+                    </div>
+            `;
+        });
+        const keyItemsHtml = await Promise.all(keyItemsPromises);
+        keysList.innerHTML = keyItemsHtml.join('');
+    } else if (keys.length === 1) {
+        keysList.innerHTML = `
+            <div class="code">
+                        <span>${keys[0]}</span>
+                        <button class="copyKeyBtn" ><i class="fa-regular fa-copy" data-key="${keys[0]}"></i></button>
+                    </div>
+        `;
+    }
+
+
+    document.querySelectorAll('.copyKeyBtn').forEach(button => {
+        button.addEventListener('click', (event) => {
+            const keycp = event.target.getAttribute('data-key');
+            navigator.clipboard.writeText(keycp).then(async () => {
+                event.target.classList.remove('fa-copy');
+                event.target.classList.add('fa-circle-check');
+                setTimeout(async () => {
+                    event.target.classList.remove('fa-circle-check');
+                    event.target.classList.add('fa-copy');
+                }, 2000);
+            });
+        });
+    });
     keyContainer.classList.remove('hidden');
     startBtn.classList.remove('hidden');
     statusGen.classList.add('hidden');
@@ -182,25 +227,25 @@ async function login(clientId) {
 }
 
 function generateUUID() {
-    	let random = Math.floor(Math.random() * 2000);
-	if (random < 250) {
-		statusText.innerText = 'выполняем конкурсы тамады';
-	} else if (random < 500) {
-		statusText.innerText = 'любуемся рекламой ВТБ';
-	} else if (random < 750) {
-		statusText.innerText = 'загадываем желание золотой рыбке';
-	} else if (random < 1000) {
-		statusText.innerText = 'материм разработчиков';
-	} else if (random < 1250) {
-		statusText.innerText = 'мечтаем о листинге';
-	} else if (random < 1500) {
-		statusText.innerText = 'радуемся что Вы на нас подписаны';
-	} else if (random < 1750) {
-		statusText.innerText = 'Просим дьявола, чтобы подготовил котел разработчикам';
-	} else if (random < 2000) {
-		statusText.innerText = 'Торгуем носками на рынке, т.к. с хомяка не заработать';
-	}
-    
+    let random = Math.floor(Math.random() * 2000);
+    if (random < 250) {
+        statusText.innerText = 'выполняем конкурсы тамады';
+    } else if (random < 500) {
+        statusText.innerText = 'любуемся рекламой ВТБ';
+    } else if (random < 750) {
+        statusText.innerText = 'загадываем желание золотой рыбке';
+    } else if (random < 1000) {
+        statusText.innerText = 'материм разработчиков';
+    } else if (random < 1250) {
+        statusText.innerText = 'мечтаем о листинге';
+    } else if (random < 1500) {
+        statusText.innerText = 'радуемся что Вы на нас подписаны';
+    } else if (random < 1750) {
+        statusText.innerText = 'Просим дьявола, чтобы подготовил котел разработчикам';
+    } else if (random < 2000) {
+        statusText.innerText = 'Торгуем носками на рынке, т.к. с хомяка не заработать';
+    }
+
     if (typeof crypto.randomUUID === 'function') {
         try {
             return crypto.randomUUID();
