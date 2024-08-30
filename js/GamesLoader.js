@@ -1,6 +1,6 @@
 const adconfig = {
     0: {
-        name: "ScrooG",
+        name: "Scroog",
         ref: "https://t.me/scroo_g_bot/miniapp?startapp=u560736783",
         pic: "img/scroog.jpg",
     },
@@ -12,12 +12,12 @@ const adconfig = {
     2: {
         name: "Clarnium",
         ref: "https://t.me/ClarniumGame_bot/start?startapp=BVRSB4",
-        pic: "img/Clarnium.jpg",
+        pic: "img/clarnium.jpg",
     },
     3: {
         name: "Banana",
         ref: "https://t.me/OfficialBananaBot/banana?startapp=referral=FGAOMG",
-        pic: "img/Bananas.jpg",
+        pic: "img/bananas.jpg",
     },
     4: {
         name: "Goat",
