@@ -68,7 +68,7 @@ const gamePromoConfigs = {
     GangsWars: {
         appToken: 'b6de60a0-e030-48bb-a551-548372493523',
         promoId: 'c7821fa7-6632-482c-9635-2bd5798585f9',
-        eventsDelay: 30000,
+        eventsDelay: 120000,
         attemptsNumber: 20
     }
 };
@@ -289,9 +289,9 @@ async function emulateProgress(clientToken) {
         })
     });
     const data = await response.json();
-    // if (!response.ok) {
-    //     throw new Error(data.error_message || 'Failed to register event');
-    // }
+    if (!response.ok) {
+        throw new Error(data.error_message || 'Failed to register event');
+    }
     return data.hasCode;
 }
 
