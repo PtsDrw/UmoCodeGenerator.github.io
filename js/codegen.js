@@ -14,7 +14,7 @@ const gamePromoConfigs = {
     TrainMiner: {
         appToken: '82647f43-3f87-402d-88dd-09a90025313f',
         promoId: 'c4480ac7-e178-4973-8061-9ed5b2e17954',
-        eventsDelay: 20000,
+        eventsDelay: 120000,
         attemptsNumber: 10
     },
     BikeRide3D: {
