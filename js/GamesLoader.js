@@ -192,12 +192,12 @@ const adimg = document.getElementById('adimg');
 const adlink = document.getElementById('adlink');
 
 function AdLoad() {
-    let adload = Math.floor(Math.random() * 36);
+    let adload = Math.floor(Math.random() * 11);
     console.log(adload);
     adselect = adconfig[adload];
     adimg.src = adselect.pic;
     adlink.href = adselect.ref;
 
-    setTimeout(AdLoad, 3000);
+    setTimeout(AdLoad, 10000);
 }
 window.onload = AdLoad;
