@@ -101,6 +101,12 @@ const gamePromoConfigs = {
         eventsDelay: 10000,
         attemptsNumber: 20
     },
+	PinOut: {
+        appToken: 'd2378baf-d617-417a-9d99-d685824335f0',
+        promoId: 'd2378baf-d617-417a-9d99-d685824335f0',
+        eventsDelay: 10000,
+        attemptsNumber: 20
+    },
     
 };
 
