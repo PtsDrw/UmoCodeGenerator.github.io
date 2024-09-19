@@ -124,6 +124,12 @@ const gamePromoConfigs = {
         promoId: 'eb518c4b-e448-4065-9d33-06f3039f0fcb',
         eventsDelay: 20000,
         attemptsNumber: 20
+    },
+	FactoryWorld: {
+        appToken: 'daab8f83-8ea2-4ad0-8dd5-d33363129640',
+        promoId: 'daab8f83-8ea2-4ad0-8dd5-d33363129640',
+        eventsDelay: 20000,
+        attemptsNumber: 20
     }
 };
 
